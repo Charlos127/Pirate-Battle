@@ -2,7 +2,7 @@
 
 2D top-down naval shooter built with React, TypeScript (strict), PixiJS, TanStack Query, Axios, MSW and Playwright.
 
-**Live demo:** <public URL>
+**Live demo:** https://pirate-battle-bay-sigma.vercel.app/
 
 ## Setup
 
