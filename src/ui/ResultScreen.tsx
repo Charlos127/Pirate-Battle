@@ -30,7 +30,7 @@ export function ResultScreen({
         : "";
 
   return (
-    <main>
+    <main className="menu panel">
       <h1>Match result</h1>
       <dl>
         <dt>Score</dt>
@@ -41,14 +41,18 @@ export function ResultScreen({
         <dd>{result.endReason === "time" ? "Time is up" : "Ship destroyed"}</dd>
       </dl>
       <p role="status">{status}</p>
-      {submit.isError && (
-        <button onClick={() => submit.mutate({ ...result, playerName: "You" })}>
-          Retry
-        </button>
-      )}
-      <button onClick={onPlayAgain}>Play Again</button>{" "}
-      {/* works even with a pending record */}
-      <button onClick={onMenu}>Main Menu</button>
+      <div className="menu-actions">
+        {submit.isError && (
+          <button
+            onClick={() => submit.mutate({ ...result, playerName: "You" })}
+          >
+            Retry
+          </button>
+        )}
+        <button onClick={onPlayAgain}>Play Again</button>
+        {/* works even with a pending record */}
+        <button onClick={onMenu}>Main Menu</button>
+      </div>
     </main>
   );
 }

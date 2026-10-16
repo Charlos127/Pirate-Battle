@@ -15,23 +15,27 @@ const BTN: Array<[keyof InputState, string, string]> = [
 export function TouchControls({ session }: { session: GameSession }) {
   return (
     <div className="touch" role="group" aria-label="Touch controls">
-      {BTN.map(([action, icon, label]) => (
-        <button
-          key={action}
-          type="button"
-          className="touch-btn"
-          aria-label={label}
-          data-testid={`touch-${action}`}
-          onPointerDown={(e) => {
-            e.currentTarget.setPointerCapture(e.pointerId);
-            session.input.setAction(action, true);
-          }}
-          onPointerUp={() => session.input.setAction(action, false)}
-          onPointerCancel={() => session.input.setAction(action, false)}
-          onContextMenu={(e) => e.preventDefault()}
-        >
-          <img src={`${BASE}/${icon}`} alt="" draggable={false} />
-        </button>
+      {[BTN.slice(0, 3), BTN.slice(3)].map((group, gi) => (
+        <div className="touch-group" key={gi}>
+          {group.map(([action, icon, label]) => (
+            <button
+              key={action}
+              type="button"
+              className="touch-btn"
+              aria-label={label}
+              data-testid={`touch-${action}`}
+              onPointerDown={(e) => {
+                e.currentTarget.setPointerCapture(e.pointerId);
+                session.input.setAction(action, true);
+              }}
+              onPointerUp={() => session.input.setAction(action, false)}
+              onPointerCancel={() => session.input.setAction(action, false)}
+              onContextMenu={(e) => e.preventDefault()}
+            >
+              <img src={`${BASE}/${icon}`} alt="" draggable={false} />
+            </button>
+          ))}
+        </div>
       ))}
     </div>
   );
