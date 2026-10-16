@@ -1,0 +1,244 @@
+:root {
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  touch-action: none;
+  background: #0b2a3b url("/assets/ui_scene_background.png") center / cover
+    no-repeat fixed;
+}
+.game-root {
+  position: fixed;
+  inset: 0;
+  display: grid;
+}
+.game-canvas {
+  position: absolute;
+  inset: 0;
+}
+.game-canvas canvas {
+  display: block;
+}
+
+.hud {
+  position: absolute;
+  top: env(safe-area-inset-top, 8px);
+  left: 8px;
+  right: 8px;
+  display: flex;
+  gap: 12px;
+  pointer-events: none;
+}
+.hud-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background:
+    url("/assets/png/default/ui/hud/counter_panel.png") center / 100% 100%
+      no-repeat,
+    rgba(0, 0, 0, 0.55);
+  text-shadow: 0 1px 2px #000;
+}
+.hud-actions {
+  position: absolute;
+  top: env(safe-area-inset-top, 8px);
+  right: 8px;
+}
+
+.touch {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+.touch-btn {
+  min-height: 56px;
+  border: 0;
+  padding: 0;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  background: url("/assets/png/default/ui/controls/button_round_normal.png")
+    center / contain no-repeat;
+}
+.touch-btn:active {
+  background-image: url("/assets/png/default/ui/controls/button_round_pressed.png");
+}
+.touch-btn img {
+  width: 60%;
+  height: auto;
+  pointer-events: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #ffd54f;
+  outline-offset: 2px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+@media (hover: hover) and (pointer: fine) {
+  .touch {
+    display: none;
+  }
+}
+
+.menu {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  gap: 24px;
+}
+.menu-title {
+  margin: 0;
+  text-align: center;
+}
+.menu-title img {
+  max-width: min(100%, 520px);
+  height: auto;
+}
+.menu-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Panels: the supplied panel art, with a solid fallback color for contrast */
+.panel {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: rgba(11, 42, 59, 0.88);
+  border: 2px solid #2d5870;
+}
+
+/* Buttons: 9-slice-like stretch of the supplied sprites */
+button,
+select,
+input {
+  font: inherit;
+  min-height: 44px;
+  padding: 0 16px;
+}
+button {
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  text-shadow: 0 1px 2px #000;
+  background:
+    url("/assets/png/retina/ui/menu/button_secondary_normal.png") center / 100% 100%
+      no-repeat,
+    #2d5870;
+}
+button:active {
+  background-image: url("/assets/png/retina/ui/menu/button_secondary_pressed.png");
+}
+button.primary {
+  color: #1a1a1a;
+  font-weight: 700;
+  text-shadow: none;
+  background:
+    url("/assets/png/retina/ui/menu/button_primary_normal.png") center / 100% 100%
+      no-repeat,
+    #ffb300;
+}
+button.primary:hover {
+  background-image: url("/assets/png/retina/ui/menu/button_primary_hover.png");
+}
+button.primary:active {
+  background-image: url("/assets/png/retina/ui/menu/button_primary_pressed.png");
+}
+button:disabled,
+button.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-image: url("/assets/png/retina/ui/menu/button_primary_disabled.png");
+}
+button .icon,
+button img {
+  vertical-align: middle;
+}
+.icon-btn {
+  min-width: 44px;
+  padding: 0 8px;
+  pointer-events: auto;
+}
+
+[role="tablist"] {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid #2d5870;
+}
+[role="tab"] {
+  background: #2d5870;
+  border-radius: 8px 8px 0 0;
+}
+[role="tab"][aria-selected="true"] {
+  border-bottom: 3px solid #ffb300;
+  font-weight: 700;
+  background: #1b3f55;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #2d5870;
+}
+tr.me {
+  background: rgba(255, 179, 0, 0.15);
+}
+.pagination {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+.error-box {
+  border: 2px solid #ff8a80;
+  padding: 12px;
+  border-radius: 8px;
+}
+.muted {
+  opacity: 0.8;
+}
+.debug {
+  border: 1px dashed #90a4ae;
+  padding: 12px;
+}
+
+.dialog {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(90vw, 360px);
+  height: fit-content;
+  display: grid;
+  gap: 12px;
+  text-align: center;
+}
+
+.game-root > [role="alert"],
+.game-root > [role="progressbar"] {
+  position: relative;
+  z-index: 1;
+}
